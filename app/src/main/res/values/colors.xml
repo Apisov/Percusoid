@@ -9,4 +9,5 @@
     <color name="hint_color">#cafaf6f7</color>
     <color name="instrument_title">#fafffe</color>
     <color name="instrumentThreshold">#68c4dfff</color>
+    <color name="instrumentHit">#edf7f7f7</color>
 </resources>

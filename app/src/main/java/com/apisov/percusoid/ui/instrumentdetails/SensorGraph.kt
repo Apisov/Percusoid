@@ -73,7 +73,7 @@ class SensorGraph : View {
             strokeJoin = Paint.Join.ROUND
             strokeCap = Paint.Cap.ROUND
             strokeWidth = context.resources.getDimension(R.dimen.graph_threshold_stroke) * 4
-            color = Color.YELLOW
+            color = ContextCompat.getColor(context, R.color.instrumentHit)
         }
 
         with(thresholdPaint) {
