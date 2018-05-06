@@ -21,7 +21,8 @@ create there a midi port with exact name `Virtual MIDI Bus`
 ## Instruction for the app
 1. First screen is a list of instruments(if there any).
 Nothing special, use `+` button to create new instrument. 
-[Instrument list](screenshots/InstrumentDetails.png)
+
+![alt text](screenshots/InstrumentList.png "Instrument list")
 
 1. Instrument creation and Instrument details share the same screen. 
 You can see 3 controls to tweak:
@@ -35,8 +36,8 @@ _**2**_ tells the app when to trigger a `hit` for MIDI. Whenever accelerometer g
 
  _**3**_ represents how easy you can get max value for MIDI output. 
  If try to say more clear - the more low corresponding line then the louder sound is
-
-[Instrument details screen](screenshots/InstrumentDetails.png)
+![alt text](screenshots/InstrumentDetails.png "Instrument details screen")
+ 
 
 1. In the end of instrument config we gave MIDI options
  - Note pitch
@@ -45,7 +46,4 @@ _**2**_ tells the app when to trigger a `hit` for MIDI. Whenever accelerometer g
  
 We need this because Percusoid app sends not only hits midi signal but also continuous control changes that possible to use as 
 automation for an instrument in DAW for example. To make these controls different from each other in perspective of MIDI you can assign different channels and controls.
-
-[Instrument details screen pt.2](screenshots/InstrumentDetails.png) 
-
-
+![alt text](screenshots/InstrumentDetails2.png "Instrument details screen pt.2")
