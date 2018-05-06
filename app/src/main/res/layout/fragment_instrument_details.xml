@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.apisov.percusoid.ui.instrumentdetails.InstrumentDetailsViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.apisov.percusoid.ui.instrumentdetails.SensorGraph
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/graphBackground"
+            app:layout_constraintTop_toBottomOf="@+id/btnSaveInstrument" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize" />
+
+        <EditText
+            android:id="@+id/instrumentName"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:ellipsize="end"
+            android:hint="@string/instrument_name_hint"
+            android:inputType="textAutoComplete"
+            android:maxLines="1"
+            android:minHeight="?android:listPreferredItemHeight"
+            android:scrollbars="vertical"
+            android:singleLine="true"
+            android:text="@{viewModel.instrument.name}"
+            android:textColor="@color/instrument_title"
+            android:textColorHighlight="@android:color/transparent"
+            android:textColorHint="@color/hint_color"
+            android:textSize="16pt"
+            app:fontFamily="@font/ubuntu_mono"
+            app:layout_constraintEnd_toStartOf="@id/btnSaveInstrument"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnSaveInstrument"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginEnd="@dimen/content_margin"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/save_instrument"
+            android:onClick="@{() -> viewModel.onSaveClicked()}"
+            android:paddingEnd="@dimen/horizontal_margin"
+            android:paddingStart="@dimen/horizontal_margin"
+            android:text="@string/save"
+            app:layout_constraintRight_toLeftOf="@id/btnDeleteInstrument"
+            app:srcCompat="@drawable/ic_save_white_24dp" />
+
+        <ImageView
+            android:id="@+id/btnDeleteInstrument"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/delete_instrument"
+            android:onClick="@{() -> viewModel.onDeleteClicked()}"
+            android:paddingEnd="@dimen/horizontal_margin"
+            android:paddingStart="@dimen/horizontal_margin"
+            android:text="@string/save"
+            android:visibility="@{viewModel.instrument.id == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/ic_delete_white_24dp" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/graph">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/InstrumentConfigTitle"
+                    android:text="@string/title_sensor_sensitivity" />
+
+                <SeekBar
+                    android:id="@+id/sensorSensitivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/content_margin"
+                    android:layout_marginStart="@dimen/content_margin"
+                    android:progress="@{viewModel.input.sensorSensitivity}" />
+
+                <TextView
+                    style="@style/InstrumentConfigTitle"
+                    android:text="@string/title_instrument_threshold" />
+
+                <SeekBar
+                    android:id="@+id/instrumentThreshold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/content_margin"
+                    android:layout_marginStart="@dimen/content_margin"
+                    android:progress="@{viewModel.input.inputThreshold}" />
+
+                <TextView
+                    style="@style/InstrumentConfigTitle"
+                    android:text="@string/title_instrument_sensitivity" />
+
+                <SeekBar
+                    android:id="@+id/instrumentSensitivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/content_margin"
+                    android:layout_marginStart="@dimen/content_margin"
+                    android:progress="@{viewModel.input.inputSensitivity}" />
+
+                <TextView
+                    style="@style/InstrumentConfigTitle"
+                    android:text="@string/title_midi" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/midi_config_panel_height"
+                    android:layout_marginBottom="@dimen/horizontal_margin"
+                    android:layout_marginEnd="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/MidiConfigTitle"
+                        android:text="@string/midi_note" />
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/midiNote"
+                        style="@style/MidiConfigPicker"
+                        android:layout_gravity="start"
+                        app:np_max="127"
+                        app:np_min="0"
+                        app:np_value="@{viewModel.input.note}" />
+
+                    <TextView
+                        style="@style/MidiConfigTitle"
+                        android:text="@string/midi_channel" />
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/midiChannel"
+                        style="@style/MidiConfigPicker"
+                        android:layout_gravity="center"
+                        app:np_max="16"
+                        app:np_min="1"
+                        app:np_value="@{viewModel.input.channel}" />
+
+                    <TextView
+                        style="@style/MidiConfigTitle"
+                        android:text="@string/midi_control" />
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/midiControl"
+                        style="@style/MidiConfigPicker"
+                        android:layout_gravity="end"
+                        app:np_max="127"
+                        app:np_min="0"
+                        app:np_value="@{viewModel.input.control}" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.constraint.ConstraintLayout>
+</layout>

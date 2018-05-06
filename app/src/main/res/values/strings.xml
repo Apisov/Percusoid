@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Percusoid</string>
+    <string name="instrument_title"><![CDATA[<b>></b> %s]]></string>
+    <string name="save">Save</string>
+    <string name="title_instrument_threshold">\\ Instrument threshold</string>
+    <string name="title_sensor_sensitivity">\\ Sensor sensitivity</string>
+    <string name="title_instrument_sensitivity">\\ Instrument sensitivity</string>
+    <string name="title_midi">MIDI</string>
+    <string name="delete_instrument">Delete instrument</string>
+    <string name="save_instrument">Save instrument</string>
+    <string name="instrument_name_hint">Name</string>
+    <string name="midi_control">Control</string>
+    <string name="midi_channel">Channel</string>
+    <string name="midi_note">Note</string>
+</resources>

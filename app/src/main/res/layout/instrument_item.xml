@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="instrument"
+            type="com.apisov.percusoid.data.Instrument" />
+    </data>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/instrument_name"
+        android:layout_width="match_parent"
+        android:layout_height="?android:listPreferredItemHeight"
+        android:layout_marginBottom="@dimen/content_margin"
+        android:layout_marginTop="@dimen/content_margin"
+        android:ellipsize="end"
+        android:lines="1"
+        android:paddingEnd="@dimen/horizontal_margin"
+        android:paddingStart="@dimen/horizontal_margin"
+        android:text="@{Html.fromHtml(String.format(@string/instrument_title, instrument.name))}"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/ubuntu_light"
+        tools:text="> Test" />
+</layout>

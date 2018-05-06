@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#171e41</color>
+    <color name="colorPrimaryDark">#060815</color>
+    <color name="colorAccent">#00cfb0</color>
+    <color name="graphBackground">#01132d</color>
+    <color name="sensorMax">#fc819e</color>
+    <color name="sensorMin">#faf6f7</color>
+    <color name="hint_color">#cafaf6f7</color>
+    <color name="instrument_title">#fafffe</color>
+    <color name="instrumentThreshold">#68c4dfff</color>
+</resources>
