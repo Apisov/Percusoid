@@ -151,18 +151,21 @@ class InstrumentDetailsViewModel(
         }
     }
 
-    fun onInstrumentSensitivityChanged(maxValue: Float, progress: Int) {
+    fun onInstrumentSensitivityChanged(progress: Int) {
         input.get()?.inputSensitivity = progress
-        instrumentSensorFilter.maxValue = maxValue
     }
 
-    fun onInstrumentThresholdChanged(instrumentThreshold: Float, progress: Int) {
+    fun onInstrumentThresholdChanged(progress: Int) {
         input.get()?.inputThreshold = progress
-        instrumentSensorFilter.threshold = instrumentThreshold
     }
 
     fun onSensorSensitivityChanged(progress: Int) {
         input.get()?.sensorSensitivity = progress
+    }
+
+    fun updateSensorFilter(maxValue: Float, instrumentThreshold: Float) {
+        instrumentSensorFilter.threshold = instrumentThreshold
+        instrumentSensorFilter.maxValue = maxValue
     }
 
     fun onNoteChanged(note: Int) {

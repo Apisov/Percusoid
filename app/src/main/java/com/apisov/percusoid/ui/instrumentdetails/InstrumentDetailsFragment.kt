@@ -62,15 +62,14 @@ class InstrumentDetailsFragment : Fragment() {
                 ) {
                     val progress = adjustSeekBarProgress(newProgress)
                     graph.sensorMaxValuePercentage = progress
+                    instrumentDetailsViewModel.updateSensorFilter(
+                        graph.instrumentMaxValue(),
+                        graph.instrumentThreshold()
+                    )
+
                     if (fromUser) {
                         instrumentDetailsViewModel.onSensorSensitivityChanged(
                             progress
-                        )
-                        instrumentDetailsViewModel.onInstrumentSensitivityChanged(
-                            graph.instrumentMaxValue(), progress
-                        )
-                        instrumentDetailsViewModel.onInstrumentThresholdChanged(
-                            graph.instrumentThreshold(), progress
                         )
                     }
                 }
@@ -85,9 +84,13 @@ class InstrumentDetailsFragment : Fragment() {
                     val progress = adjustSeekBarProgress(newProgress)
 
                     graph.instrumentThresholdPercentage(progress)
+                    instrumentDetailsViewModel.updateSensorFilter(
+                        graph.instrumentMaxValue(),
+                        graph.instrumentThreshold()
+                    )
                     if (fromUser) {
                         instrumentDetailsViewModel.onInstrumentThresholdChanged(
-                            graph.instrumentThreshold(), progress
+                            progress
                         )
                     }
                 }
@@ -103,9 +106,13 @@ class InstrumentDetailsFragment : Fragment() {
                     val progress = adjustSeekBarProgress(newProgress)
 
                     graph.instrumentMaxValuePercentage(progress)
+                    instrumentDetailsViewModel.updateSensorFilter(
+                        graph.instrumentMaxValue(),
+                        graph.instrumentThreshold()
+                    )
                     if (fromUser) {
                         instrumentDetailsViewModel.onInstrumentSensitivityChanged(
-                            graph.instrumentMaxValue(), progress
+                            progress
                         )
                     }
                 }
