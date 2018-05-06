@@ -12,7 +12,7 @@ import com.apisov.percusoid.util.SensorEventBus
 
 const val ACCELEROMETER_SAMPLING_PERIOD = 10L
 const val AVERAGE_BUFFER = 3
-const val GRAVITY_CALCULATION_OFFSET = 50
+const val GRAVITY_CALCULATION_OFFSET = 150
 
 class AccelerometerService : Service(), SensorEventListener {
 
