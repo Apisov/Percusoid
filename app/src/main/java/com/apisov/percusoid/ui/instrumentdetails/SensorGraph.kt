@@ -133,8 +133,9 @@ class SensorGraph : View {
             instrumentThreshold,
             thresholdPaint
         )
+        // TODO: Rework it with [canvas.drawPoints] as more efficient way
         hits.forEach({
-            hitPaint?.strokeWidth = it.velocityAsRadius
+            hitPaint.strokeWidth = it.velocityAsRadius
             canvas.drawPoint(it.x, instrumentThreshold, hitPaint)
         })
     }
@@ -152,7 +153,7 @@ class SensorGraph : View {
         instrumentMaxValuePercentage = progress
         instrumentMaxValue = height - progress / 100f * height
 
-        paintStroke?.shader = LinearGradient(
+        paintStroke.shader = LinearGradient(
             0f,
             height.toFloat(),
             0f,
