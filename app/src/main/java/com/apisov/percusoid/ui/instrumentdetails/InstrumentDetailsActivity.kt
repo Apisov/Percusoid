@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.view.WindowManager
 import com.apisov.percusoid.R
 import com.apisov.percusoid.service.AccelerometerService
 import com.apisov.percusoid.ui.AbsActivity
@@ -40,6 +41,7 @@ class InstrumentDetailsActivity : AbsActivity() {
         }
 
         startService(Intent(this, AccelerometerService::class.java))
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
 
