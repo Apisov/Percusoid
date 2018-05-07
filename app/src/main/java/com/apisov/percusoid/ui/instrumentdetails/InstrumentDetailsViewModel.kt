@@ -41,7 +41,6 @@ class InstrumentDetailsViewModel(
 
     override fun start() {
         oscManager = OscManager()
-        oscManager.connect()
 
         if (instrumentId != null) {
             run {
@@ -133,11 +132,6 @@ class InstrumentDetailsViewModel(
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
-        oscManager.disconnect(object : OscManager.OnSendCompleteCallback {
-            override fun onComplete() {
-                oscManager.stop()
-            }
-        })
         onClearedEvent.call()
     }
 
@@ -178,5 +172,17 @@ class InstrumentDetailsViewModel(
 
     fun onControlChanged(control: Int) {
         input.get()?.control = control
+    }
+
+    fun resume() {
+        oscManager.connect()
+    }
+
+    fun pause() {
+        oscManager.disconnect(object : OscManager.OnSendCompleteCallback {
+            override fun onComplete() {
+                oscManager.stop()
+            }
+        })
     }
 }

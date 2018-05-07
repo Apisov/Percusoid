@@ -160,6 +160,15 @@ class InstrumentDetailsFragment : Fragment() {
         numberPicker.setOnValueChangedListener { _, _, value -> action.invoke(value) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        instrumentDetailsViewModel.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        instrumentDetailsViewModel.pause()
+    }
     override fun onDestroy() {
         super.onDestroy()
         disposable.dispose()
