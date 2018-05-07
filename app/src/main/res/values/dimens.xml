@@ -6,4 +6,5 @@
     <dimen name="graph_threshold_stroke">4dp</dimen>
     <dimen name="sensor_graph">16pt</dimen>
     <dimen name="midi_config_panel_height">120dp</dimen>
+    <dimen name="toolbar_title">16pt</dimen>
 </resources>

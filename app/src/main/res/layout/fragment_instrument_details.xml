@@ -46,10 +46,10 @@
             android:scrollbars="vertical"
             android:singleLine="true"
             android:text="@{viewModel.instrument.name}"
-            android:textColor="@color/instrument_title"
+            android:textColor="@color/toolbar_title"
             android:textColorHighlight="@android:color/transparent"
             android:textColorHint="@color/hint_color"
-            android:textSize="16pt"
+            android:textSize="@dimen/toolbar_title"
             app:fontFamily="@font/ubuntu_mono"
             app:layout_constraintEnd_toStartOf="@id/btnSaveInstrument"
             app:layout_constraintStart_toStartOf="parent" />
