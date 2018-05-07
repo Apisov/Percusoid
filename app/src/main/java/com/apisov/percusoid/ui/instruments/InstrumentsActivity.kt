@@ -16,7 +16,7 @@ class InstrumentsActivity : AbsActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.setTitle(R.string.app_name)
+        toolbarTitle.setText(R.string.app_name)
 
         getViewModel<InstrumentsViewModel>().apply {
             openInstrumentEvent.observe(this@InstrumentsActivity, Observer {

@@ -10,4 +10,14 @@
     android:theme="@style/Toolbar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     tools:showIn="@layout/activity_main"
-    tools:title="@string/app_name" />
+    tools:title="@string/app_name">
+
+    <TextView
+        android:id="@+id/toolbarTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/ubuntu_mono"
+        android:textColor="@color/toolbar_title"
+        android:textSize="@dimen/toolbar_title"
+        tools:text="Test" />
+</android.support.v7.widget.Toolbar>
