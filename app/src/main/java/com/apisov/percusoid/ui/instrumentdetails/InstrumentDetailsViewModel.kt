@@ -94,6 +94,10 @@ class InstrumentDetailsViewModel(
     }
 
     fun onSaveClicked() {
+        saveInstrument()
+    }
+
+    private fun saveInstrument() {
         run {
             if (instrumentId == null) {
                 instrumentsRepository
@@ -112,7 +116,7 @@ class InstrumentDetailsViewModel(
                     .updateInstrument(instrument.get()!!)
                     .flatMap { inputsRepository.updateInputs(instrument.get()!!.inputs) }
                     .with(schedulerProvider)
-                    .subscribe({ instrumentSavedEvent.call() }, Throwable::printStackTrace)
+                    .subscribe({ }, Throwable::printStackTrace)
             }
         }
     }
@@ -179,6 +183,7 @@ class InstrumentDetailsViewModel(
     }
 
     fun pause() {
+        saveInstrument()
         oscManager.disconnect(object : OscManager.OnSendCompleteCallback {
             override fun onComplete() {
                 oscManager.stop()

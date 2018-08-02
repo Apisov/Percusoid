@@ -6,7 +6,7 @@ object Versions {
     const val buildTools = "27.0.3"
 
     const val kotlin = "1.2.60"
-    const val support = "27.1.0"
+    const val support = "27.1.1"
     const val constraintLayout = "1.0.2"
     const val rxJava = "2.1.10"
     const val rxAndroid = "2.0.2"

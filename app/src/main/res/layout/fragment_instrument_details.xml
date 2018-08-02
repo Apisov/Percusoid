@@ -27,8 +27,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize" />
+            android:background="?colorPrimary"
+            android:minHeight="?actionBarSize" />
 
         <EditText
             android:id="@+id/instrumentName"
@@ -65,6 +65,7 @@
             android:paddingEnd="@dimen/horizontal_margin"
             android:paddingStart="@dimen/horizontal_margin"
             android:text="@string/save"
+            android:visibility="@{viewModel.instrument.id == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintRight_toLeftOf="@id/btnDeleteInstrument"
             app:srcCompat="@drawable/ic_save_white_24dp" />
 
