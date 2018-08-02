@@ -5,7 +5,7 @@ object Versions {
     const val compileSdk = 27
     const val buildTools = "27.0.3"
 
-    const val kotlin = "1.2.40"
+    const val kotlin = "1.2.60"
     const val support = "27.1.0"
     const val constraintLayout = "1.0.2"
     const val rxJava = "2.1.10"
@@ -17,7 +17,7 @@ object Versions {
     const val koin = "0.9.1"
     const val dataBinding = "3.1.1"
 
-    const val androidGradlePlugin = "3.1.2"
+    const val androidGradlePlugin = "3.1.3"
     const val gradleVersionsPlugin = "0.17.0"
 }
 
