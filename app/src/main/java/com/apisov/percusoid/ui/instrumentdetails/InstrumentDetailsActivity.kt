@@ -33,7 +33,7 @@ class InstrumentDetailsActivity : AbsActivity() {
             deleteDialogEvent.observe(this@InstrumentDetailsActivity, Observer {
                 AlertDialog.Builder(this@InstrumentDetailsActivity)
                     .setMessage("Do you want to delete?")
-                    .setPositiveButton("Yes", { _, _ -> deleteInstrument() })
+                    .setPositiveButton("Yes") { _, _ -> deleteInstrument() }
                     .setNegativeButton("No", null)
                     .create()
                     .show()

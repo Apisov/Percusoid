@@ -118,9 +118,9 @@ class InstrumentDetailsFragment : Fragment() {
                 }
             })
 
-            initMidiConfig(midiNote, { instrumentDetailsViewModel.onNoteChanged(it) })
-            initMidiConfig(midiChannel, { instrumentDetailsViewModel.onChannelChanged(it) })
-            initMidiConfig(midiControl, { instrumentDetailsViewModel.onControlChanged(it) })
+            initMidiConfig(midiNote) { instrumentDetailsViewModel.onNoteChanged(it) }
+            initMidiConfig(midiChannel) { instrumentDetailsViewModel.onChannelChanged(it) }
+            initMidiConfig(midiControl) { instrumentDetailsViewModel.onControlChanged(it) }
 
             with(instrumentDetailsViewModel) {
                 viewModel = this

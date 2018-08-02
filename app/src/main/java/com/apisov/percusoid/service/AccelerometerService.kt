@@ -43,6 +43,7 @@ class AccelerometerService : Service(), SensorEventListener {
     }
 
     override fun onBind(intent: Intent?) = null
+
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) = Unit
 
     override fun onSensorChanged(event: SensorEvent?) {
