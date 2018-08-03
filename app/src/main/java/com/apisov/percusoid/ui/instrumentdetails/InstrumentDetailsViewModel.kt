@@ -34,6 +34,7 @@ class InstrumentDetailsViewModel(
 
     private lateinit var oscManager: OscManager
     private var instrumentName: String = ""
+    private var instrumentControlUpdates = false
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -63,19 +64,27 @@ class InstrumentDetailsViewModel(
 
     private fun addSensorObserver() {
         compositeDisposable.add(SensorEventBus.subject
-            .buffer(AVERAGE_BUFFER, 1)
-            .map { it.average().toFloat() }
             .doOnNext {
-                if (it > instrumentSensorFilter.threshold) {
-                    if (oscManager.connected) {
+                if (oscManager.connected) {
+                    if (it >= instrumentSensorFilter.threshold) {
+                        instrumentControlUpdates = true
                         oscManager.sendControls(
-                            input.get()!!.channel,
+                            input.get()!!.channel - 1 /* Midi channel info is 0-15 */,
                             input.get()!!.control,
                             instrumentSensorFilter.magnitudeToVelocity(it)
+                        )
+                    } else if (instrumentControlUpdates) {
+                        instrumentControlUpdates = false
+                        oscManager.sendControls(
+                            input.get()!!.channel - 1 /* Midxi channel info is 0-15 */,
+                            input.get()!!.control,
+                            instrumentSensorFilter.magnitudeToVelocity(instrumentSensorFilter.threshold)
                         )
                     }
                 }
             }
+            .buffer(AVERAGE_BUFFER, 1)
+            .map { it.average().toFloat() }
             .distinctUntilChanged { value -> value > instrumentSensorFilter.threshold }
             .filter { it > instrumentSensorFilter.threshold }
             .map(instrumentSensorFilter::magnitudeToVelocity)
@@ -94,30 +103,18 @@ class InstrumentDetailsViewModel(
     }
 
     fun onSaveClicked() {
-        saveInstrument()
-    }
-
-    private fun saveInstrument() {
         run {
-            if (instrumentId == null) {
-                instrumentsRepository
-                    .saveInstrument(Instrument(name = instrumentName))
-                    .flatMap { instrumentId ->
-                        inputsRepository.saveInputs(
-                            instrument.get()!!.inputs.map {
-                                it.instrumentId = instrumentId
-                                it
-                            })
-                    }
-                    .with(schedulerProvider)
-                    .subscribe({ instrumentSavedEvent.call() }, Throwable::printStackTrace)
-            } else {
-                instrumentsRepository
-                    .updateInstrument(instrument.get()!!)
-                    .flatMap { inputsRepository.updateInputs(instrument.get()!!.inputs) }
-                    .with(schedulerProvider)
-                    .subscribe({ }, Throwable::printStackTrace)
-            }
+            instrumentsRepository
+                .saveInstrument(Instrument(name = instrumentName))
+                .flatMap { instrumentId ->
+                    inputsRepository.saveInputs(
+                        instrument.get()!!.inputs.map {
+                            it.instrumentId = instrumentId
+                            it
+                        })
+                }
+                .with(schedulerProvider)
+                .subscribe({ instrumentSavedEvent.call() }, Throwable::printStackTrace)
         }
     }
 
@@ -171,7 +168,7 @@ class InstrumentDetailsViewModel(
     }
 
     fun onChannelChanged(channel: Int) {
-        input.get()?.channel = channel - 1 /* Midi channel info is 0-15 */
+        input.get()?.channel = channel
     }
 
     fun onControlChanged(control: Int) {
@@ -183,7 +180,15 @@ class InstrumentDetailsViewModel(
     }
 
     fun pause() {
-        saveInstrument()
+        if (instrumentId != null) {
+            run {
+                instrumentsRepository
+                    .updateInstrument(instrument.get()!!)
+                    .flatMap { inputsRepository.updateInputs(instrument.get()!!.inputs) }
+                    .with(schedulerProvider)
+                    .subscribe({ }, Throwable::printStackTrace)
+            }
+        }
         oscManager.disconnect(object : OscManager.OnSendCompleteCallback {
             override fun onComplete() {
                 oscManager.stop()

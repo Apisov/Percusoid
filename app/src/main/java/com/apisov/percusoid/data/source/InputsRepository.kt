@@ -27,9 +27,7 @@ class InputsRepository(
         Single.defer {
             val inputsEntities = fromInputsToInputEntityList(inputs)
             Single.just(
-                database.inputsDao().updateInputs(
-                    inputsEntities
-                )
+                database.inputsDao().updateInputs(inputsEntities)
             )
         }
 
