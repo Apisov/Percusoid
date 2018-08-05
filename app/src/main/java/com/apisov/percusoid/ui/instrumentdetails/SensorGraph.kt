@@ -134,10 +134,10 @@ class SensorGraph : View {
             thresholdPaint
         )
         // TODO: Rework it with [canvas.drawPoints] as more efficient way
-        hits.forEach({
+        hits.forEach {
             hitPaint.strokeWidth = it.velocityAsRadius
             canvas.drawPoint(it.x, instrumentThreshold, hitPaint)
-        })
+        }
     }
 
     private fun updateCoef(sensorMaxValue: Int) {
@@ -189,7 +189,7 @@ class SensorGraph : View {
         }
         hitsCircles.rewind()
         hits.removeAll { it.x + valueSectionWidth > width }
-        hits.forEach({ it.x += valueSectionWidth })
+        hits.forEach { it.x += valueSectionWidth }
 
         invalidate()
     }

@@ -76,7 +76,7 @@ class InstrumentDetailsViewModel(
                     } else if (instrumentControlUpdates) {
                         instrumentControlUpdates = false
                         oscManager.sendControls(
-                            input.get()!!.channel - 1 /* Midxi channel info is 0-15 */,
+                            input.get()!!.channel - 1 /* Midi channel info is 0-15 */,
                             input.get()!!.control,
                             instrumentSensorFilter.magnitudeToVelocity(instrumentSensorFilter.threshold)
                         )
