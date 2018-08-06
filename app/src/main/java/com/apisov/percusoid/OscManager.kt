@@ -51,9 +51,7 @@ class OscManager {
      */
     fun connect() {
         createBroadcastSender()
-
         startBroadcastAnswerServer()
-
         send("connect", listOf(getNetworkAddress()?.hostAddress, BROADCAST_PORT))
     }
 
@@ -140,7 +138,7 @@ class OscManager {
                 ignored.printStackTrace()
             }
 
-            uiThread {
+            uiThread { _ ->
                 onComplete {
                     onCompleteListener?.apply { onComplete() }
                 }

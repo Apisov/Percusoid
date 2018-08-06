@@ -9,7 +9,7 @@ class PercusoidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(this, percusoidApp)
+        startKoin(percusoidApp)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

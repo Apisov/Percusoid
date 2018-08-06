@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'kotlin-allopen'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -28,7 +28,7 @@ android {
         sourceSets {
             androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
         }
-        
+
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -44,41 +44,22 @@ android {
 
     flavorDimensions "default"
 
-    // If you need to add more flavors, consider using flavor dimensions.
-    productFlavors {
-        mock {
-            applicationIdSuffix = ".mock"
-            dimension "default"
-        }
-        prod {
-            dimension "default"
-        }
-    }
-
-    // Remove mockRelease as it's not needed.
-    android.variantFilter { variant ->
-        if (variant.buildType.name == 'release'
-                && variant.flavors[0].name == 'mock') {
-            variant.ignore = true
-        }
-    }
-
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
 
-    android {
-        lintOptions {
-            abortOnError false
-        }
-    }
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.apisov.percusoid.OpenClass'
 }
 
 dependencies {
@@ -110,17 +91,27 @@ dependencies {
     }
     /*OTHER*/
     implementation 'com.illposed.osc:javaosc-core:0.4'
-    implementation 'com.jakewharton.timber:timber:4.6.1'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     /* TESTING */
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    testImplementation "android.arch.core:core-testing:$Versions.archLifecycle"
-}
+    testImplementation Deps.junit
+    testImplementation Deps.mockitoCore
+    testImplementation Deps.kotlinStdlib
+    testImplementation Deps.kotlinTest
 
-gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-        options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+    testImplementation Deps.archTesting, {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
     }
+
+    androidTestImplementation Deps.junit
+    androidTestImplementation Deps.mockitoCore, { exclude group: 'net.bytebuddy' }
+
+    androidTestImplementation Deps.testRunner
+    androidTestImplementation Deps.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    }
+    androidTestImplementation Deps.archTesting
 }
