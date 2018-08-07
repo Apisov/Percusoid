@@ -25,6 +25,7 @@ object Versions {
     const val mockito = "2.7.19"
     const val testRunner = "1.0.2"
     const val espressoCore = "3.0.2"
+    const val hamcrest = "1.3"
 }
 
 object Deps {
@@ -67,6 +68,8 @@ object Deps {
     /* TESTING */
     const val junit = "junit:junit:${Versions.junit}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
+    const val hamcrest = "org.hamcrest:hamcrest-all:${Versions.hamcrest}"
     const val testRunner = "com.android.support.test:runner:${Versions.testRunner}"
-    const val espressoCore = "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
+    const val espressoCore =
+        "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
 }

@@ -1,10 +1,12 @@
 package com.apisov.percusoid.data.source
 
+import com.apisov.percusoid.OpenForTesting
 import com.apisov.percusoid.data.Instrument
 import com.apisov.percusoid.data.source.local.PercusoidDatabase
 import io.reactivex.Flowable
 import io.reactivex.Single
 
+@OpenForTesting
 class InstrumentsRepository(
     private val database: PercusoidDatabase
 ) {

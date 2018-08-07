@@ -96,6 +96,7 @@ dependencies {
     /* TESTING */
     testImplementation Deps.junit
     testImplementation Deps.mockitoCore
+    testImplementation Deps.hamcrest
     testImplementation Deps.kotlinStdlib
     testImplementation Deps.kotlinTest
 
