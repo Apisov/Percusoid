@@ -2,8 +2,8 @@
 
 object Versions {
     const val minSdk = 18
-    const val compileSdk = 27
-    const val buildTools = "27.0.3"
+    const val compileSdk = 28
+    const val buildTools = "28.0.2"
 
     const val kotlin = "1.2.60"
     const val support = "27.1.1"
@@ -17,7 +17,7 @@ object Versions {
     const val koin = "0.9.3"
     const val dataBinding = "3.1.1"
 
-    const val androidGradlePlugin = "3.1.3"
+    const val androidGradlePlugin = "3.1.4"
     const val gradleVersionsPlugin = "0.17.0"
 
     /* TESTING */
