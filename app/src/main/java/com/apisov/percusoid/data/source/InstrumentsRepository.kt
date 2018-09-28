@@ -30,9 +30,7 @@ class InstrumentsRepository(
         }
 
     fun deleteInstrument(instrumentId: String): Single<Int> = Single.defer {
-        Single.just(
-            database.instrumentsDao().deleteInstrumentById(instrumentId)
-        )
+        Single.just(database.instrumentsDao().deleteInstrumentById(instrumentId))
     }
 
     fun getInstrumentById(instrumentId: String): Single<Instrument> =

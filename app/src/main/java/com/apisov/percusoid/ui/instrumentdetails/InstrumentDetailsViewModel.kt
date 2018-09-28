@@ -2,6 +2,7 @@ package com.apisov.percusoid.ui.instrumentdetails
 
 import android.databinding.ObservableField
 import com.apisov.percusoid.InstrumentSensorFilter
+import com.apisov.percusoid.OpenForTesting
 import com.apisov.percusoid.OscManager
 import com.apisov.percusoid.data.Input
 import com.apisov.percusoid.data.Instrument
@@ -16,6 +17,7 @@ import com.apisov.percusoid.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
+@OpenForTesting
 class InstrumentDetailsViewModel(
     private val instrumentId: String?,
     private val instrumentsRepository: InstrumentsRepository,
@@ -26,7 +28,7 @@ class InstrumentDetailsViewModel(
     val instrument: ObservableField<Instrument> = ObservableField()
     val input: ObservableField<Input> = ObservableField()
     val openSensorEvent = SingleLiveEvent<String>()
-    val instrumentSavedEvent = SingleLiveEvent<String>()
+    val instrumentSavedEvent = SingleLiveEvent<Unit>()
     val instrumentDeletedEvent = SingleLiveEvent<Unit>()
     val deleteDialogEvent = SingleLiveEvent<Unit>()
     val onClearedEvent = SingleLiveEvent<String>()

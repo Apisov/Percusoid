@@ -1,3 +1,11 @@
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.android.application'
+    id 'com.android.application'
+    id 'com.android.application'
+}
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -70,11 +78,13 @@ dependencies {
     implementation Deps.room
     implementation Deps.roomRxJava
     implementation Deps.archLifecycle
+    implementation "android.arch.lifecycle:livedata:${Versions.archLifecycle}"
+    implementation Deps.commonLifecycle
+    kapt Deps.dataBinding
 
     implementation 'com.shawnlin:number-picker:2.4.6'
 
     kapt Deps.roomCompiler
-    kapt Deps.archLifecycleCompiler
 
     /*KOTLIN*/
     implementation Deps.anko
@@ -89,6 +99,34 @@ dependencies {
     implementation(Deps.rxAndroid) {
         exclude module: 'rxjava'
     }
+
+    // DL4J
+    compile (group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-beta2') {
+        exclude group: 'org.bytedeco.javacpp-presets', module: 'opencv-platform'
+        exclude group: 'org.bytedeco.javacpp-presets', module: 'leptonica-platform'
+        exclude group: 'org.bytedeco.javacpp-presets', module: 'hdf5-platform'
+    }
+    compile group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta2'
+    compile group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta2', classifier: "android-arm"
+    compile group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta2', classifier: "android-arm64"
+    compile group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta2', classifier: "android-x86"
+    compile group: 'org.nd4j', name: 'nd4j-native', version: '1.0.0-beta2', classifier: "android-x86_64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'openblas', version: '0.3.0-1.4.2'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'openblas', version: '0.3.0-1.4.2', classifier: "android-arm"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'openblas', version: '0.3.0-1.4.2', classifier: "android-arm64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'openblas', version: '0.3.0-1.4.2', classifier: "android-x86"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'openblas', version: '0.3.0-1.4.2', classifier: "android-x86_64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.2-1.4.2'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.2-1.4.2', classifier: "android-arm"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.2-1.4.2', classifier: "android-arm64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.2-1.4.2', classifier: "android-x86"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.2-1.4.2', classifier: "android-x86_64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.76.0-1.4.2'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.76.0-1.4.2', classifier: "android-arm"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.76.0-1.4.2', classifier: "android-arm64"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.76.0-1.4.2', classifier: "android-x86"
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.76.0-1.4.2', classifier: "android-x86_64"
+
     /*OTHER*/
     implementation 'com.illposed.osc:javaosc-core:0.4'
     implementation 'com.jakewharton.timber:timber:4.7.1'

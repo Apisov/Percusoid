@@ -1,23 +1,21 @@
-@file:Suppress("unused")
-
 object Versions {
     const val minSdk = 18
     const val compileSdk = 28
-    const val buildTools = "28.0.2"
+    const val buildTools = "28.0.3"
 
-    const val kotlin = "1.2.60"
+    const val kotlin = "1.2.71"
     const val support = "27.1.1"
-    const val constraintLayout = "1.1.2"
+    const val constraintLayout = "1.1.3"
     const val rxJava = "2.1.10"
     const val rxAndroid = "2.0.2"
     const val rxKotlin = "2.2.0"
-    const val room = "1.0.0"
+    const val room = "1.1.1"
     const val archLifecycle = "1.1.1"
     const val anko = "0.10.1"
     const val koin = "0.9.3"
-    const val dataBinding = "3.1.1"
+    const val dataBinding = "3.1.4"
 
-    const val androidGradlePlugin = "3.1.4"
+    const val androidGradlePlugin = "3.2.0"
     const val gradleVersionsPlugin = "0.17.0"
 
     /* TESTING */
@@ -42,8 +40,9 @@ object Deps {
     const val design = "com.android.support:design:${Versions.support}"
     const val recyclerView = "com.android.support:recyclerview-v7:${Versions.support}"
     const val archLifecycle = "android.arch.lifecycle:extensions:${Versions.archLifecycle}"
+    const val commonLifecycle = "android.arch.lifecycle:common-java8:${Versions.archLifecycle}"
     const val archTesting = "android.arch.core:core-testing:${Versions.archLifecycle}"
-    const val archLifecycleCompiler = "android.arch.lifecycle:compiler:${Versions.archLifecycle}"
+    const val dataBinding = "com.android.databinding:compiler:${Versions.dataBinding}"
     const val constraintLayout =
         "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
 

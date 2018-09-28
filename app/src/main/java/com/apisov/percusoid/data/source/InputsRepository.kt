@@ -1,9 +1,11 @@
 package com.apisov.percusoid.data.source
 
+import com.apisov.percusoid.OpenForTesting
 import com.apisov.percusoid.data.Input
 import com.apisov.percusoid.data.source.local.PercusoidDatabase
 import io.reactivex.Single
 
+@OpenForTesting
 class InputsRepository(
     private val database: PercusoidDatabase
 ) {
