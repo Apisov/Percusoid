@@ -1,7 +1,7 @@
 object Versions {
     const val minSdk = 18
     const val compileSdk = 28
-    const val buildTools = "28.0.3"
+    const val buildTools = "28.0.2"
 
     const val kotlin = "1.2.71"
     const val support = "27.1.1"
@@ -13,7 +13,6 @@ object Versions {
     const val archLifecycle = "1.1.1"
     const val anko = "0.10.1"
     const val koin = "0.9.3"
-    const val dataBinding = "3.1.4"
 
     const val androidGradlePlugin = "3.2.0"
     const val gradleVersionsPlugin = "0.17.0"
@@ -42,7 +41,6 @@ object Deps {
     const val archLifecycle = "android.arch.lifecycle:extensions:${Versions.archLifecycle}"
     const val commonLifecycle = "android.arch.lifecycle:common-java8:${Versions.archLifecycle}"
     const val archTesting = "android.arch.core:core-testing:${Versions.archLifecycle}"
-    const val dataBinding = "com.android.databinding:compiler:${Versions.dataBinding}"
     const val constraintLayout =
         "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
 
