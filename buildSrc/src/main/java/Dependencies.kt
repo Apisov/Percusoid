@@ -1,9 +1,12 @@
+import org.gradle.api.artifacts.Dependency
+import org.gradle.api.artifacts.dsl.DependencyHandler
+
 object Versions {
-    const val minSdk = 18
+    const val minSdk = 21
     const val compileSdk = 28
     const val buildTools = "28.0.2"
 
-    const val kotlin = "1.2.71"
+    const val kotlin = "1.3.10"
     const val support = "27.1.1"
     const val constraintLayout = "1.1.3"
     const val rxJava = "2.1.10"
@@ -12,9 +15,9 @@ object Versions {
     const val room = "1.1.1"
     const val archLifecycle = "1.1.1"
     const val anko = "0.10.1"
-    const val koin = "0.9.3"
+    const val koin = "1.0.2"
 
-    const val androidGradlePlugin = "3.2.0"
+    const val androidGradlePlugin = "3.2.1"
     const val gradleVersionsPlugin = "0.17.0"
 
     /* TESTING */
@@ -31,7 +34,12 @@ object Deps {
     const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     const val kotlinAllOpenPlugin = "org.jetbrains.kotlin:kotlin-allopen:${Versions.kotlin}"
 
-    const val koin = "org.koin:koin-android-architecture:${Versions.koin}"
+    val koin = arrayOf(
+        "org.koin:koin-android:${Versions.koin}",
+        "org.koin:koin-android-scope:${Versions.koin}",
+        "org.koin:koin-android-viewmodel:${Versions.koin}"
+    )
+
     const val anko = "org.jetbrains.anko:anko-common:${Versions.anko}"
 
     const val appcompat = "com.android.support:appcompat-v7:${Versions.support}"
@@ -70,3 +78,14 @@ object Deps {
     const val espressoCore =
         "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
 }
+
+/**
+ * Adds a dependency to the 'implementation' configuration.
+ *
+ * @param dependencyNotation notation for the dependency to be added.
+ * @return The dependency.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.`implementation`(dependencyNotation: Array<Any>): Dependency? =
+    add("implementation", dependencyNotation)
