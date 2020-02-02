@@ -71,7 +71,7 @@ dependencies {
     /*KOTLIN*/
     implementation(Deps.anko)
     implementation(Deps.kotlinStdlib)
-    implementation(Deps.koin)
+    implementations(Deps.koin)
 
     // RX
     implementation(Deps.rxJava)

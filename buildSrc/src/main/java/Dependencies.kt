@@ -1,4 +1,3 @@
-import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Versions {
@@ -6,7 +5,7 @@ object Versions {
     const val compileSdk = 28
     const val buildTools = "28.0.2"
 
-    const val kotlin = "1.3.10"
+    const val kotlin = "1.3.61"
     const val support = "27.1.1"
     const val constraintLayout = "1.1.3"
     const val rxJava = "2.1.10"
@@ -15,9 +14,9 @@ object Versions {
     const val room = "1.1.1"
     const val archLifecycle = "1.1.1"
     const val anko = "0.10.1"
-    const val koin = "1.0.2"
+    const val koin = "2.0.1"
 
-    const val androidGradlePlugin = "3.2.1"
+    const val androidGradlePlugin = "4.0.0-alpha08"
     const val gradleVersionsPlugin = "0.17.0"
 
     /* TESTING */
@@ -35,9 +34,9 @@ object Deps {
     const val kotlinAllOpenPlugin = "org.jetbrains.kotlin:kotlin-allopen:${Versions.kotlin}"
 
     val koin = arrayOf(
-        "org.koin:koin-android:${Versions.koin}",
-        "org.koin:koin-android-scope:${Versions.koin}",
-        "org.koin:koin-android-viewmodel:${Versions.koin}"
+            "org.koin:koin-android:${Versions.koin}",
+            "org.koin:koin-android-scope:${Versions.koin}",
+            "org.koin:koin-android-viewmodel:${Versions.koin}"
     )
 
     const val anko = "org.jetbrains.anko:anko-common:${Versions.anko}"
@@ -50,7 +49,7 @@ object Deps {
     const val commonLifecycle = "android.arch.lifecycle:common-java8:${Versions.archLifecycle}"
     const val archTesting = "android.arch.core:core-testing:${Versions.archLifecycle}"
     const val constraintLayout =
-        "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
+            "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
 
     const val room = "android.arch.persistence.room:runtime:${Versions.room}"
     const val roomRxJava = "android.arch.persistence.room:rxjava2:${Versions.room}"
@@ -62,13 +61,13 @@ object Deps {
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
 
     const val androidGradlePlugin =
-        "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
+            "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
     const val gradleVersionsPlugin =
-        "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
+            "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
 
     const val dexcountGradlePlugin =
-        "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2"
+            "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2"
 
     /* TESTING */
     const val junit = "junit:junit:${Versions.junit}"
@@ -76,7 +75,7 @@ object Deps {
     const val hamcrest = "org.hamcrest:hamcrest-all:${Versions.hamcrest}"
     const val testRunner = "com.android.support.test:runner:${Versions.testRunner}"
     const val espressoCore =
-        "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
+            "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}"
 }
 
 /**
@@ -87,5 +86,5 @@ object Deps {
  *
  * @see [DependencyHandler.add]
  */
-fun DependencyHandler.`implementation`(dependencyNotation: Array<Any>): Dependency? =
-    add("implementation", dependencyNotation)
+fun DependencyHandler.`implementations`(dependencyNotation: Array<String>) =
+        dependencyNotation.forEach { add("implementation", it) }
